@@ -1,0 +1,40 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+<rule>
+name: requirements_discussion_and_context
+
+description: |
+  When a user requests a new task, enforce a thorough requirements gathering process. Ensure requirements are listed in numbered bullet points, written to a file, and that relevant files (@file and @file-test) are attached and described in context.
+
+filters:
+  - type: event
+    pattern: "task_request"
+
+actions:
+  - type: require
+    message: |
+      Before starting any new task, you must:
+      1. Engage in a detailed discussion with the user to clarify and enumerate all requirements.
+      2. List the requirements in numbered bullet points, so each can be referenced individually.
+      3. Ask the user for permission to write the requirements to a file (e.g., requirements.txt or requirements.md) for future reference and reinjection into the context window.
+      4. Attach the @file and @file-test into the context. Explicitly instruct Cursor to "inspect and describe the file" for each.
+      5. Confirm with the user that all requirements are captured before proceeding with implementation.
+
+examples:
+  - input: |
+      User: I want a new feature that does X, Y, and Z.
+    output: |
+      Assistant: Let's clarify your requirements. Please confirm or expand on the following:
+      1. The feature should do X
+      2. The feature should do Y
+      3. The feature should do Z
+      Would you like me to write these requirements to a file for future reference? Also, please specify the relevant @file and @file-test to attach, so I can inspect and describe them before starting.
+
+metadata:
+  priority: high
+  version: 1.0
+</rule>
+

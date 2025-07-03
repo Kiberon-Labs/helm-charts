@@ -1,0 +1,50 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+<rule>
+name: documentation_hierarchy
+
+description: |
+  Documentation must be hierarchical and live as close to the implementation as possible. If documentation cannot be atomic or touches multiple systems, move it one level higher in the hierarchy.
+
+filters:
+  - type: event
+    pattern: "documentation_update"
+
+actions:
+  - type: require
+    message: |
+      Follow this order for documentation placement (from lowest to highest):
+      1. Adjacent to the code: Use JSDoc or language/framework-specific documentation annotations.
+      2. In a README file within a directory. If the directory is intended to be walked over, move the documentation higher in the file system.
+      3. Inside the `docs` folder at the project root, for high-level information intended to help developers and users.
+      4. Inside the `architecture` folder at the project root, reserved for large overarching documentation (e.g., why and how specific subsystems are used and how they fit together).
+      5. Inside the root `README.md` file. This should be reserved for a high level view of how users and developers might use the system.
+      
+      Always prefer the lowest possible level for documentation. If documentation spans multiple systems or cannot be atomic, move it up one level in the hierarchy.
+
+examples:
+  - input: |
+      You are documenting a utility function used only in one file.
+    output: |
+      Add JSDoc comments directly above the function in the code file.
+  - input: |
+      You are documenting a module used by several files in a directory.
+    output: |
+      Add or update a README.md in the module's directory.
+  - input: |
+      You are documenting a cross-cutting concern that affects multiple modules and directories.
+    output: |
+      Add or update documentation in the `docs` folder at the project root.
+  - input: |
+      You are documenting the overall system architecture and rationale for subsystem choices.
+    output: |
+      Add or update documentation in the `architecture` folder at the project root.
+
+metadata:
+  priority: high
+  version: 1.0
+</rule>
+

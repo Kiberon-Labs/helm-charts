@@ -1,0 +1,41 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+<rule>
+name: standard_operating_procedure_post_change
+
+description: |
+  After making any code changes, follow this standard operating procedure to ensure quality and maintainability.
+
+filters:
+  - type: event
+    pattern: "post_change"
+
+actions:
+  - type: require
+    message: |
+      After completing your changes, you must:
+      1. Add or update any necessary documentation related to the changes made.
+      2. Write new tests for the task if required, or update existing tests to cover the new behavior.
+      3. Run all existing tests to ensure nothing was broken by your changes.
+      4. Run linting to check for code style or static analysis issues.
+      5. If all tests and linting pass, create a git commit with a descriptive message summarizing the changes.
+      6. If any tests or linting fail, address the issues before committing.
+
+examples:
+  - input: |
+      Assistant: I have implemented the requested feature.
+    output: |
+      Assistant: Now I will:
+      1. Update the documentation.
+      2. Write and/or update tests.
+      3. Run all tests and linting.
+      4. If everything passes, I will create a git commit.
+
+metadata:
+  priority: high
+  version: 1.0
+</rule>
+
