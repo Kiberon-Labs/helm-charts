@@ -67,7 +67,12 @@ nodeSelector: {}
 ## @param tolerations Tolerations for pod assignment
 tolerations: []
 
-## @param affinity Affinity rules for pod assignment
+## Affinity for pod assignment. Evaluated as a template.
+## ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
+## Note: podAffinityPreset, podAntiAffinityPreset, and nodeAffinityPreset will be ignored when it's set
+##
+## @param affinity  Affinity for pod assignment
+##
 affinity: {}
 
 service:
@@ -103,7 +108,8 @@ vars:
   PORT: "8000"
   MODEL_NAME: "gpt-4.1-mini"
 
-## @param additionalEnv Additional environment variables
+## @param additionalEnv Additional environment variables type
+
 additionalEnv: []
   # - name: NEO4J_PASSWORD
   #   valueFrom:

@@ -16,7 +16,7 @@ jobs:
 
       - uses: actions/setup-python@v5
         with:
-          python-version: 3.13
+          python-version: 3.12
       
       - name: Install helm-unittest plugin
         run: helm plugin install https://github.com/helm-unittest/helm-unittest
@@ -59,6 +59,6 @@ jobs:
           for chart in "${CHART_ARRAY[@]}"; do
             echo "Testing chart: $chart"
             cd "$chart"
-            helm unittest . -q -f tests/**/*.yml || exit 1
-            cd $GITHUB_WORKSPACE
+            helm unittest . -q -f "tests/**/*.yml" || exit 1
+            cd "$GITHUB_WORKSPACE"
           done

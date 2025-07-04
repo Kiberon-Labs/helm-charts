@@ -21,11 +21,13 @@ helm repo update
 ```
 
 ```sh
-# Create your secrets to reference (For best practivce)
-kubectl create secret generic graphiti-secrets --from-literal=NEO4J_PASSWORD=yourpassword
-helm install graphiti-mcp kiberon-labs/graphiti-mcp \
-  --set vars.NEO4J_PASSWORD=graphiti-secrets:NE
+helm install graphiti-mcp kiberon-labs/graphiti-mcp 
 ```
+For best practices, create your secrets first instead of using the vars to set them directly in the chart:
+```sh
+kubectl create secret generic graphiti-secrets --from-literal=NEO4J_PASSWORD=yourpassword
+```
+
 {{ template "chart.requirementsSection" . }}
 
 {{ template "chart.valuesSection" . }}

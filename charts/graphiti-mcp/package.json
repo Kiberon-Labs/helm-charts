@@ -1,5 +1,5 @@
 {
-    "name": "@kiberon-labs/helm-chart-goalert",
+    "name": "@kiberon-labs/helm-chart",
     "homepage": "https://github.com/kiberon-labs/helm",
     "license": "MPL-2.0",
     "private": true,

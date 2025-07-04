@@ -131,7 +131,7 @@
         },
         "affinity": {
             "type": "object",
-            "description": "Affinity rules for pod assignment",
+            "description": "Affinity for pod assignment",
             "default": {}
         },
         "service": {
@@ -203,7 +203,7 @@
         },
         "additionalEnv": {
             "type": "array",
-            "description": "Additional environment variables",
+            "description": "Additional environment variables type",
             "default": [],
             "items": {}
         }

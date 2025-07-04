@@ -20,6 +20,7 @@ home: https://github.com/getzep/graphiti
 annotations:
   artifacthub.io/valuesSchema: "true"
   licenses: Apache-2.0
+  artifacthub.io/license: Apache-2.0
   artifacthub.io/category: ai-machine-learning
   artifacthub.io/signKey: |
     fingerprint: 564D3A60C9171409/564D3A60C9171409

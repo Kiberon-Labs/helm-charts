@@ -193,7 +193,6 @@ MD041:
 MD042: true
 
 
-
 # MD044/proper-names : Proper names should have the correct capitalization : https://github.com/DavidAnson/markdownlint/blob/v0.35.0/doc/md044.md
 MD044:
   # List of proper names

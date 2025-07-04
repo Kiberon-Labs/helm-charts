@@ -5,6 +5,4 @@ metadata:
   labels:
     {{- include "graphiti.labels" . | nindent 4 }}
 data:
-  {{- range $key, $value := .Values.vars }}
-  {{ $key }}: {{ $value | quote }}
-  {{- end }} 
+  {{- toYaml .Values.vars | nindent 2 }}

@@ -1,6 +1,8 @@
 # graphiti-mcp
 
+
 ![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.2.1](https://img.shields.io/badge/AppVersion-v0.2.1-informational?style=flat-square) [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/kiberon-labs)](https://artifacthub.io/packages/search?repo=kiberon-labs)
+
 
 This Helm chart deploys the [Graphiti](https://github.com/getzep/graphiti) MCP server.
 
@@ -12,11 +14,22 @@ This Helm chart deploys the [Graphiti](https://github.com/getzep/graphiti) MCP s
 
 ## Installation
 
+
 ```sh
-# Create your secrets to reference (For best practivce)
-kubectl create secret generic graphiti-secrets --from-literal=NEO4J_PASSWORD=yourpassword
-helm install graphiti ./charts/Graphiti
+# Add the repo 
+helm repo add kiberon-labs https://kiberon-labs.github.io/helm-charts
+helm repo update
 ```
+
+```sh
+helm install graphiti-mcp kiberon-labs/graphiti-mcp 
+```
+For best practices, create your secrets first instead of using the vars to set them directly in the chart:
+```sh
+kubectl create secret generic graphiti-secrets --from-literal=NEO4J_PASSWORD=yourpassword
+```
+
+
 
 ## Values
 
@@ -55,3 +68,5 @@ helm install graphiti ./charts/Graphiti
 | vars.MODEL_NAME | string | `"gpt-4.1-mini"` |  |
 | vars.NEO4J_USER | string | `"neo4j"` |  |
 | vars.PORT | string | `"8000"` |  |
+
+
