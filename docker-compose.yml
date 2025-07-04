@@ -1,0 +1,17 @@
+services:
+  lint:
+    image: quay.io/helmpack/chart-testing
+    volumes:
+      - ./:/charts
+      - ./scripts:/scripts
+    working_dir: /charts
+    entrypoint: sh /scripts/lint.sh
+  test:
+    image: quay.io/helmpack/chart-testing
+    volumes:
+      - ./:/charts
+      - ./scripts:/scripts
+    working_dir: /charts
+    entrypoint: sh /scripts/test.sh
+    # Note you will need to expose your kubernetes service to the container
+    network_mode: host

@@ -1,0 +1,26 @@
+apiVersion: v2
+name: graphiti-mcp
+version: 0.1.0
+description: A Helm chart for deploying the Graphiti MCP server
+appVersion: "v0.2.1"
+type: application
+sources:
+  - https://github.com/getzep/graphiti
+keywords:
+  - graphiti
+  - mcp
+  - gateway
+  - ai
+  - automation
+maintainers:
+  - name: Kiberon Labs
+    email: admin@kiberonlabs.com
+icon: https://github.com/getzep.png
+home: https://github.com/getzep/graphiti
+annotations:
+  artifacthub.io/valuesSchema: "true"
+  licenses: Apache-2.0
+  artifacthub.io/category: ai-machine-learning
+  artifacthub.io/signKey: |
+    fingerprint: 564D3A60C9171409/564D3A60C9171409
+    url: https://keybase.io/kiberonlabs/pgp_keys.asc

@@ -1,0 +1,119 @@
+# Default values for graphiti.
+# This is a YAML-formatted file.
+# Each field is annotated for schema generation.
+
+## @section Global parameters
+## @param replicaCount Number of replicas for the deployment
+replicaCount: 1
+
+image:
+  ## @section Image parameters
+  ## @param image.repository Container image repository
+  repository: zepai/knowledge-graph-mcp
+  ## @param image.pullPolicy Image pull policy (Always, IfNotPresent, Never)
+  pullPolicy: IfNotPresent
+  ## @param image.tag Image tag
+  tag: "v0.2.1"
+
+## @param imagePullSecrets List of image pull secrets
+imagePullSecrets: []
+# - name: myRegistryKeySecretName
+
+## @param nameOverride Override the name of the chart
+nameOverride: ""
+## @param fullnameOverride Override the full name of the chart
+fullnameOverride: ""
+
+serviceAccount:
+  ## @section Service Account parameters
+  ## @param serviceAccount.create Specifies whether a service account should be created
+  create: true
+  ## @param serviceAccount.annotations Annotations to add to the service account
+  annotations: {}
+  ## @param serviceAccount.name The name of the service account to use
+  name: ""
+
+## @param podAnnotations Annotations to add to the pod
+podAnnotations: {}
+
+## @param podSecurityContext Pod-level security context configuration
+podSecurityContext: {}
+
+## @param securityContext Container-level security context configuration
+securityContext: {}
+
+## @section Resource parameters
+resources:
+  ## @param resources.limits Resource limits
+  limits: {}
+  ## @param resources.requests Resource requests
+  requests: {}
+
+## @section Autoscaling parameters
+autoscaling:
+  ## @param autoscaling.enabled Enable Horizontal Pod Autoscaler
+  enabled: false
+  ## @param autoscaling.minReplicas Minimum number of replicas
+  minReplicas: 1
+  ## @param autoscaling.maxReplicas Maximum number of replicas
+  maxReplicas: 100
+  ## @param autoscaling.targetCPUUtilizationPercentage Target CPU utilization percentage
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+## @param nodeSelector Node selector for pod assignment
+nodeSelector: {}
+
+## @param tolerations Tolerations for pod assignment
+tolerations: []
+
+## @param affinity Affinity rules for pod assignment
+affinity: {}
+
+service:
+  ## @section Service parameters
+  ## @param service.type Kubernetes service type (ClusterIP, NodePort, LoadBalancer)
+  type: ClusterIP
+  ## @param service.port Service port
+  port: 8000
+
+## @section Ingress parameters
+## @param ingress.enabled Enable ingress resource
+## @param ingress.hosts List of hosts for the Ingress
+## @param ingress.className Ingress class name
+## @param ingress.annotations Annotations for the ingress
+  ## @param ingress.tls TLS configuration for ingress
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  hosts: []
+    # - host: chart-example.local
+    #   paths:
+    #     - path: /
+    #       pathType: ImplementationSpecific
+  tls: []
+
+## @section Environment variables
+## @param vars.NEO4J_USER Neo4j username
+## @param vars.PORT Service port environment variable
+## @param vars.MODEL_NAME Model name for the application
+vars:
+  NEO4J_USER: "neo4j"
+  PORT: "8000"
+  MODEL_NAME: "gpt-4.1-mini"
+
+## @param additionalEnv Additional environment variables
+additionalEnv: []
+  # - name: NEO4J_PASSWORD
+  #   valueFrom:
+  #     secretKeyRef:
+  #       name: graphiti-secrets
+  #       key: NEO4J_PASSWORD
+
+# envFrom example (uncomment to use)
+# envFrom:
+#   - secretRef:
+#       name: my-secret
+#   - configMapRef:
+#       name: my-configmap 

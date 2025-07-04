@@ -1,0 +1,211 @@
+{
+    "title": "Chart Values",
+    "type": "object",
+    "properties": {
+        "replicaCount": {
+            "type": "number",
+            "description": "Number of replicas for the deployment",
+            "default": 1
+        },
+        "image": {
+            "type": "object",
+            "properties": {
+                "repository": {
+                    "type": "string",
+                    "description": "Container image repository",
+                    "default": "zepai/knowledge-graph-mcp"
+                },
+                "pullPolicy": {
+                    "type": "string",
+                    "description": "Image pull policy (Always, IfNotPresent, Never)",
+                    "default": "IfNotPresent"
+                },
+                "tag": {
+                    "type": "string",
+                    "description": "Image tag",
+                    "default": "v0.2.1"
+                }
+            }
+        },
+        "imagePullSecrets": {
+            "type": "array",
+            "description": "List of image pull secrets",
+            "default": [],
+            "items": {}
+        },
+        "nameOverride": {
+            "type": "string",
+            "description": "Override the name of the chart",
+            "default": ""
+        },
+        "fullnameOverride": {
+            "type": "string",
+            "description": "Override the full name of the chart",
+            "default": ""
+        },
+        "serviceAccount": {
+            "type": "object",
+            "properties": {
+                "create": {
+                    "type": "boolean",
+                    "description": "Specifies whether a service account should be created",
+                    "default": true
+                },
+                "annotations": {
+                    "type": "object",
+                    "description": "Annotations to add to the service account",
+                    "default": {}
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the service account to use",
+                    "default": ""
+                }
+            }
+        },
+        "podAnnotations": {
+            "type": "object",
+            "description": "Annotations to add to the pod",
+            "default": {}
+        },
+        "podSecurityContext": {
+            "type": "object",
+            "description": "Pod-level security context configuration",
+            "default": {}
+        },
+        "securityContext": {
+            "type": "object",
+            "description": "Container-level security context configuration",
+            "default": {}
+        },
+        "resources": {
+            "type": "object",
+            "properties": {
+                "limits": {
+                    "type": "object",
+                    "description": "Resource limits",
+                    "default": {}
+                },
+                "requests": {
+                    "type": "object",
+                    "description": "Resource requests",
+                    "default": {}
+                }
+            }
+        },
+        "autoscaling": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Enable Horizontal Pod Autoscaler",
+                    "default": false
+                },
+                "minReplicas": {
+                    "type": "number",
+                    "description": "Minimum number of replicas",
+                    "default": 1
+                },
+                "maxReplicas": {
+                    "type": "number",
+                    "description": "Maximum number of replicas",
+                    "default": 100
+                },
+                "targetCPUUtilizationPercentage": {
+                    "type": "number",
+                    "description": "Target CPU utilization percentage",
+                    "default": 80
+                }
+            }
+        },
+        "nodeSelector": {
+            "type": "object",
+            "description": "Node selector for pod assignment",
+            "default": {}
+        },
+        "tolerations": {
+            "type": "array",
+            "description": "Tolerations for pod assignment",
+            "default": [],
+            "items": {}
+        },
+        "affinity": {
+            "type": "object",
+            "description": "Affinity rules for pod assignment",
+            "default": {}
+        },
+        "service": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "description": "Kubernetes service type (ClusterIP, NodePort, LoadBalancer)",
+                    "default": "ClusterIP"
+                },
+                "port": {
+                    "type": "number",
+                    "description": "Service port",
+                    "default": 8000
+                }
+            }
+        },
+        "ingress": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Enable ingress resource",
+                    "default": false
+                },
+                "hosts": {
+                    "type": "array",
+                    "description": "List of hosts for the Ingress",
+                    "default": [],
+                    "items": {}
+                },
+                "className": {
+                    "type": "string",
+                    "description": "Ingress class name",
+                    "default": ""
+                },
+                "annotations": {
+                    "type": "object",
+                    "description": "Annotations for the ingress",
+                    "default": {}
+                },
+                "tls": {
+                    "type": "array",
+                    "description": "TLS configuration for ingress",
+                    "default": [],
+                    "items": {}
+                }
+            }
+        },
+        "vars": {
+            "type": "object",
+            "properties": {
+                "NEO4J_USER": {
+                    "type": "string",
+                    "description": "Neo4j username",
+                    "default": "neo4j"
+                },
+                "PORT": {
+                    "type": "string",
+                    "description": "Service port environment variable",
+                    "default": "8000"
+                },
+                "MODEL_NAME": {
+                    "type": "string",
+                    "description": "Model name for the application",
+                    "default": "gpt-4.1-mini"
+                }
+            }
+        },
+        "additionalEnv": {
+            "type": "array",
+            "description": "Additional environment variables",
+            "default": [],
+            "items": {}
+        }
+    }
+}
