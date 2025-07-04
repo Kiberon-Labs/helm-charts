@@ -1,0 +1,35 @@
+{{ template "chart.header" . }}
+
+{{ template "chart.versionBadge" . }}{{ template "chart.typeBadge" . }}{{ template "chart.appVersionBadge" . }}[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/kiberon-labs)](https://artifacthub.io/packages/search?repo=kiberon-labs)
+
+
+This Helm chart deploys the [Graphiti](https://github.com/getzep/graphiti) MCP server.
+
+## Features
+
+- Deploys the Graphiti MCP server (`zepai/knowledge-graph-mcp:latest`)
+- Configurable replica count, image, service, ingress
+- Injects environment variables via `vars` and `additionalEnv` (for secrets/configmaps)
+
+## Installation
+
+
+```sh
+# Add the repo 
+helm repo add kiberon-labs https://kiberon-labs.github.io/helm-charts
+helm repo update
+```
+
+```sh
+helm install graphiti-mcp kiberon-labs/graphiti-mcp 
+```
+For best practices, create your secrets first instead of using the vars to set them directly in the chart:
+```sh
+kubectl create secret generic graphiti-secrets --from-literal=NEO4J_PASSWORD=yourpassword
+```
+
+{{ template "chart.requirementsSection" . }}
+
+{{ template "chart.valuesSection" . }}
+
+{{ template "helm-docs.versionFooter" . }}

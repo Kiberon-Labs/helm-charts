@@ -1,0 +1,64 @@
+name: Lint and Test Charts
+
+on: pull_request
+
+jobs:
+  lint-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Helm
+        uses: azure/setup-helm@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.12
+      
+      - name: Install helm-unittest plugin
+        run: helm plugin install https://github.com/helm-unittest/helm-unittest
+
+      - name: Install chart-testing
+        uses: helm/chart-testing-action@v2.6.1
+
+      - name: Run chart-testing (list-changed)
+        id: list-changed
+        run: |
+          changed=$(ct list-changed)
+          if [[ -n "$changed" ]]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "Changed charts: $changed"
+            changed_charts=$(echo "$changed" | tr '\n' ',')
+            changed_charts=${changed_charts%,} # Remove trailing comma
+            echo "changed_charts=$changed_charts" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Add repositories
+        run: |
+          for dir in $(ls -d charts/*/); do
+          helm dependency list $dir 2> /dev/null | tail +2 | head -n -1 | awk '{ print "helm repo add " $1 " " $3 }' | while read cmd; do
+            repo_name=$(echo $cmd | awk '{print $4}')
+            if ! helm repo list | grep -q $repo_name; then
+              $cmd
+            else
+              echo "Repository $repo_name already exists"
+            fi
+          done
+          done
+
+      - name: Run chart-testing (lint)
+        run: ct lint --config ct.yaml
+
+      - name: Run helm-unittest on changed charts
+        if: steps.list-changed.outputs.changed == 'true'
+        run: |
+          IFS=',' read -ra CHART_ARRAY <<< "${{ steps.list-changed.outputs.changed_charts }}"
+          for chart in "${CHART_ARRAY[@]}"; do
+            echo "Testing chart: $chart"
+            cd "$chart"
+            helm unittest . -q -f "tests/**/*.yml" || exit 1
+            cd "$GITHUB_WORKSPACE"
+          done

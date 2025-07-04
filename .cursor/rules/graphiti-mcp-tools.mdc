@@ -1,0 +1,68 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+<rule>
+name: graphiti_mcp_tools
+
+description: |
+  Guidelines for using Graphiti's MCP tools to manage agent memory, including best practices for searching, saving, and applying preferences, procedures, and facts in the knowledge graph.
+
+filters:
+  - type: event
+    pattern: "memory_management"
+
+actions:
+  - type: require
+    message: |
+      Before starting any task:
+        - Always use the `search_nodes` tool to look for relevant preferences and procedures.
+        - Use the `search_facts` tool to discover relationships and factual information.
+        - Filter by entity type: `Preference`, `Procedure`, or `Requirement` for targeted results.
+        - Review all matches for preferences, procedures, or facts relevant to the task.
+      When saving new or updated information:
+        - Capture requirements and preferences immediately with `add_memory`.
+        - Split long requirements into shorter, logical chunks.
+        - Be explicit if updating existing knowledge—only add what's changed or new.
+        - Document procedures clearly as procedures.
+        - Record factual relationships as facts.
+        - Be specific with categories for better retrieval.
+      During your work:
+        - Respect discovered preferences.
+        - Follow procedures exactly.
+        - Apply relevant facts.
+        - Stay consistent with previously identified preferences, procedures, and facts.
+      Best practices:
+        - Search before suggesting or recommending.
+        - Combine node and fact searches for complex tasks.
+        - Use `center_node_uuid` when exploring related information.
+        - Prioritize specific matches over general ones.
+        - Be proactive in storing patterns as preferences or procedures.
+      Remember: The knowledge graph is your memory. Use it consistently to provide personalized assistance that respects the user's established preferences, procedures, and factual context.
+
+examples:
+  - input: |
+      You are about to implement a new feature and want to check for existing preferences.
+    output: |
+      Use the `search_nodes` tool with entity type `Preference` before starting work.
+  - input: |
+      The user tells you they want all deployments to use rolling updates.
+    output: |
+      Immediately use `add_memory` to store this as a preference in the knowledge graph.
+  - input: |
+      You discover a new way the user wants a process to be handled.
+    output: |
+      Record this as a procedure using `add_memory` and label it clearly.
+  - input: |
+      You learn that two entities are related in a specific way.
+    output: |
+      Store this relationship as a fact in the knowledge graph.
+
+metadata:
+  priority: high
+  version: 1.0
+</rule>
+
+
+
