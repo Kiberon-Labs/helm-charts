@@ -1,6 +1,6 @@
 apiVersion: v2
 name: graphiti-mcp
-version: 0.1.1
+version: 0.1.2
 description: A Helm chart for deploying the Graphiti MCP server
 appVersion: "v0.2.1"
 type: application
@@ -22,4 +22,3 @@ annotations:
   licenses: Apache-2.0
   artifacthub.io/license: Apache-2.0
   artifacthub.io/category: ai-machine-learning
-

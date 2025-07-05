@@ -1,7 +1,7 @@
 # graphiti-mcp
 
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.2.1](https://img.shields.io/badge/AppVersion-v0.2.1-informational?style=flat-square) [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/kiberonlabs)](https://artifacthub.io/packages/search?repo=kiberonlabs)
+![Version: 0.1.2](https://img.shields.io/badge/Version-0.1.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.2.1](https://img.shields.io/badge/AppVersion-v0.2.1-informational?style=flat-square) [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/kiberonlabs)](https://artifacthub.io/packages/search?repo=kiberonlabs)
 
 
 This Helm chart deploys the [Graphiti](https://github.com/getzep/graphiti) MCP server.
@@ -19,6 +19,17 @@ This Helm chart deploys the [Graphiti](https://github.com/getzep/graphiti) MCP s
 # Add the repo 
 helm repo add kiberon-labs https://kiberon-labs.github.io/helm-charts
 helm repo update
+```
+
+
+You will need to set the values for the secrets and config values. Add them either via the vars section or the additionalEnv for mounting secrets. See [here](https://github.com/getzep/graphiti/blob/main/mcp_server/.env.example) for more information
+
+```
+NEO4J_URI=bolt://localhost:7687
+NEO4J_USER=neo4j
+NEO4J_PASSWORD=demodemo
+OPENAI_API_KEY=your_openai_api_key_here
+MODEL_NAME=gpt-4.1-mini
 ```
 
 ```sh
