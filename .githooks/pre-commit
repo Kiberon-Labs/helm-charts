@@ -3,8 +3,8 @@
 
 set -e
 
-# Find staged changes to values.schema.json or README.md.gotmpl in charts/*/
-CHARTS=$(git diff --cached --name-only | grep -E '^charts/[^/]+/(values.schema.json|Chart.yaml|README.md.gotmpl)$' | awk -F/ '{print $2}' | sort -u)
+# Find staged changes to values.schema.json, values.yaml, Chart.yaml, or README.md.gotmpl in charts/*/
+CHARTS=$(git diff --cached --name-only | grep -E '^charts/[^/]+/(values.schema.json|values.yaml|Chart.yaml|README.md.gotmpl)$' | awk -F/ '{print $2}' | sort -u)
 
 if [ -z "$CHARTS" ]; then
   exit 0
