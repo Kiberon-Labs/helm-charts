@@ -48,6 +48,18 @@ helm plugin install https://github.com/helm-unittest/helm-unittest
 helm unittest ./<chart-directory>
 ```
 
+## Git hooks 
+
+You can use git hooks during local development to assist with keeping documentation up to date with precommit hooks
+
+```
+git config core.hooksPath .githooks
+```
+
+**Note** The githooks require you to have the required CLIs installed 
+
+- helm-docs
+
 ## Documentation 
 
 We use [Helm-docs](https://github.com/norwoodj/helm-docs) to generate helm documentation and 

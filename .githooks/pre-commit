@@ -1,0 +1,30 @@
+#!/bin/bash
+# Pre-commit hook to run helm-docs on changed Helm charts
+
+set -e
+
+# Find staged changes to values.schema.json or README.md.gotmpl in charts/*/
+CHARTS=$(git diff --cached --name-only | grep -E '^charts/[^/]+/(values.schema.json|Chart.yaml|README.md.gotmpl)$' | awk -F/ '{print $2}' | sort -u)
+
+if [ -z "$CHARTS" ]; then
+  exit 0
+fi
+
+HELM_DOCS_CMD=$(command -v helm-docs || true)
+if [ -z "$HELM_DOCS_CMD" ]; then
+  echo "Error: helm-docs is not installed or not in PATH." >&2
+  exit 1
+fi
+
+for chart in $CHARTS; do
+  echo "Running helm-docs in charts/$chart"
+  (cd "charts/$chart" && helm-docs)
+  # Add the generated README.md to the commit if it changed
+  if git diff --quiet -- "charts/$chart/README.md"; then
+    :
+  else
+    git add "charts/$chart/README.md"
+  fi
+done
+
+exit 0
