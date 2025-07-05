@@ -8,6 +8,34 @@ entries:
       licenses: Apache-2.0
     apiVersion: v2
     appVersion: v0.2.1
+    created: "2025-07-05T09:41:48.132596529Z"
+    description: A Helm chart for deploying the Graphiti MCP server
+    digest: 0c546704561496e242af7cc861b7dc6c427c4a371e3919a5791eb5b5850b4e18
+    home: https://github.com/getzep/graphiti
+    icon: https://github.com/getzep.png
+    keywords:
+    - graphiti
+    - mcp
+    - gateway
+    - ai
+    - automation
+    maintainers:
+    - email: admin@kiberonlabs.com
+      name: Kiberon Labs
+    name: graphiti-mcp
+    sources:
+    - https://github.com/getzep/graphiti
+    type: application
+    urls:
+    - https://github.com/Kiberon-Labs/helm-charts/releases/download/graphiti-mcp-0.1.1/graphiti-mcp-0.1.1.tgz
+    version: 0.1.1
+  - annotations:
+      artifacthub.io/category: ai-machine-learning
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/valuesSchema: "true"
+      licenses: Apache-2.0
+    apiVersion: v2
+    appVersion: v0.2.1
     created: "2025-07-05T09:25:02.832110898Z"
     description: A Helm chart for deploying the Graphiti MCP server
     digest: 782ee45dda210b6b4e4c8896609204deb5c9126dfd3678fb959156d1ae31d5cf
@@ -29,4 +57,4 @@ entries:
     urls:
     - https://github.com/Kiberon-Labs/helm-charts/releases/download/graphiti-mcp-0.1.0/graphiti-mcp-0.1.0.tgz
     version: 0.1.0
-generated: "2025-07-05T09:25:02.832121498Z"
+generated: "2025-07-05T09:41:48.132610405Z"
