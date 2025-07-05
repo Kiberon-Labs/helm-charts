@@ -21,6 +21,17 @@ helm repo add kiberon-labs https://kiberon-labs.github.io/helm-charts
 helm repo update
 ```
 
+
+You will need to set the values for the secrets and config values. Add them either via the vars section or the additionalEnv for mounting secrets. See [here](https://github.com/getzep/graphiti/blob/main/mcp_server/.env.example) for more information
+
+```
+NEO4J_URI=bolt://localhost:7687
+NEO4J_USER=neo4j
+NEO4J_PASSWORD=demodemo
+OPENAI_API_KEY=your_openai_api_key_here
+MODEL_NAME=gpt-4.1-mini
+```
+
 ```sh
 helm install graphiti-mcp kiberon-labs/graphiti-mcp 
 ```
