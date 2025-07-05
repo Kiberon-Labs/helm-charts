@@ -1,14 +1,14 @@
 # graphiti-mcp
 
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.2.1](https://img.shields.io/badge/AppVersion-v0.2.1-informational?style=flat-square) [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/kiberon-labs)](https://artifacthub.io/packages/search?repo=kiberon-labs)
+![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.2.1](https://img.shields.io/badge/AppVersion-v0.2.1-informational?style=flat-square) [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/kiberonlabs)](https://artifacthub.io/packages/search?repo=kiberonlabs)
 
 
 This Helm chart deploys the [Graphiti](https://github.com/getzep/graphiti) MCP server.
 
 ## Features
 
-- Deploys the Graphiti MCP server (`zepai/knowledge-graph-mcp:latest`)
+- Deploys the Graphiti MCP server (`zepai/knowledge-graph-mcp:v0.2.1`)
 - Configurable replica count, image, service, ingress
 - Injects environment variables via `vars` and `additionalEnv` (for secrets/configmaps)
 
