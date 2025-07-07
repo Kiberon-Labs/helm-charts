@@ -42,7 +42,7 @@ jobs:
           done
           done
       - name: Release
-        uses: helm/chart-releaser-action@v1.6.0
+        uses: helm/chart-releaser-action@v1.7.0
         env:
           CR_GENERATE_RELEASE_NOTES: true
           CR_SKIP_EXISTING: true
