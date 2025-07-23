@@ -10,6 +10,7 @@
 # NOT apply to ownership claim operations, which are processed immediately.
 #
 
+repositoryID: f8ef9f4e-a4a9-4287-aaa3-6a21d295d260
 owners: # (optional, used to claim repository ownership)
   - name: Kiberon Labs Dev
     email: admin@kiberonlabs.com
